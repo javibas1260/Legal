@@ -17,6 +17,6 @@ Para publicarlo: *Settings → Pages → Source: Deploy from a branch → main /
 Las direcciones quedan así:
 
 ```
-https://javibas1260.github.io/legal/nightly.html
-https://javibas1260.github.io/legal/starweave.html
+https://javibas1260.github.io/Legal/nightly.html
+https://javibas1260.github.io/Legal/starweave.html
 ```
