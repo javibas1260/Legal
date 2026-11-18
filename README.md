@@ -8,6 +8,8 @@ GitHub Pages: no hay nada que compilar.
 | `index.html` | índice |
 | `nightly.html` | Nightly (App Store) |
 | `starweave.html` | Starweave (App Store y Google Play) |
+| `solitarios.html` | Solitario |
+| `ajedrez.html` | Ajedrez Maestro (App Store) |
 
 **Este repositorio es público a propósito**: Apple, Google y AdMob exigen que la
 política de privacidad sea accesible sin iniciar sesión. Aquí no hay código de los
@@ -19,4 +21,5 @@ Las direcciones quedan así:
 ```
 https://javibas1260.github.io/Legal/nightly.html
 https://javibas1260.github.io/Legal/starweave.html
+https://javibas1260.github.io/Legal/ajedrez.html
 ```
