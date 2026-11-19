@@ -33,26 +33,20 @@ function crearCorreo(config, { transporte } = {}) {
     `Código: ${r.codigo}`,
   ];
 
-  // Marca: "Cuadrilla Sky" → "cuadrilla" + "SKY"
-  const palabras = restaurante.nombre.trim().split(/\s+/);
-  const marcaSec = palabras.length > 1 ? palabras.pop() : '';
-  const marcaHtml = `<div style="font-size:30px;letter-spacing:.5px;text-transform:lowercase">${esc(palabras.join(' '))}</div>`
-    + (marcaSec ? `<div style="font-size:11px;letter-spacing:6px;text-transform:uppercase;color:#bfd8ea;margin-top:4px">${esc(marcaSec)}</div>` : '');
-
   const plantilla = (titulo, parrafos, lineas, boton) => `
-<div style="background:#f3f6f3;padding:24px 12px;font-family:Questrial,'Helvetica Neue',Arial,sans-serif;color:#14261c">
- <div style="max-width:520px;margin:auto;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #dce4df">
-  <div style="background:#15294a;color:#f3f6f3;text-align:center;padding:28px 16px">${marcaHtml}</div>
+<div style="background:#f7f3ee;padding:24px 12px;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#1f2430">
+ <div style="max-width:520px;margin:auto;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e3ddd4">
+  <div style="background:#2c3550;background-image:linear-gradient(160deg,#1b2233 0%,#2c3550 55%,#8a5a33 140%);color:#f7f3ee;text-align:center;padding:26px 16px;font-size:26px;font-weight:700;letter-spacing:.5px">${esc(restaurante.nombre)}</div>
   <div style="padding:24px 28px">
-   <h2 style="font-weight:400;font-size:22px;margin:0 0 12px">${esc(titulo)}</h2>
+   <h2 style="font-size:22px;margin:0 0 12px;color:#7a4b2a">${esc(titulo)}</h2>
    ${parrafos.map((p) => `<p style="margin:0 0 12px;line-height:1.5">${esc(p)}</p>`).join('')}
    <table style="border-collapse:collapse;margin:16px 0;width:100%">${lineas.map((l) => {
     const [k, ...v] = l.split(': ');
-    return `<tr><td style="padding:6px 12px 6px 0;color:#56605e;font-size:11px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap">${esc(k)}</td><td style="padding:6px 0">${esc(v.join(': '))}</td></tr>`;
+    return `<tr><td style="padding:6px 12px 6px 0;color:#6b6f7a;white-space:nowrap">${esc(k)}</td><td style="padding:6px 0"><strong>${esc(v.join(': '))}</strong></td></tr>`;
   }).join('')}</table>
-   ${boton ? `<p style="text-align:center;margin:24px 0 8px"><a href="${esc(boton.url)}" style="display:inline-block;background:#5e7872;color:#ffffff;padding:12px 26px;border-radius:999px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase">${esc(boton.texto)}</a></p>` : ''}
+   ${boton ? `<p style="text-align:center;margin:24px 0 8px"><a href="${esc(boton.url)}" style="display:inline-block;background:#8a5a33;color:#ffffff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:600">${esc(boton.texto)}</a></p>` : ''}
   </div>
-  <div style="border-top:1px solid #dce4df;color:#56605e;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:14px">${esc(restaurante.nombre)} · ${esc(restaurante.direccion)}</div>
+  <div style="border-top:1px solid #e3ddd4;color:#888;font-size:13px;text-align:center;padding:14px">${esc(restaurante.nombre)} · ${esc(restaurante.direccion)}</div>
  </div>
 </div>`;
 

@@ -68,7 +68,7 @@
   }
 
   function pintarOcupacion({ ocupacion, mesas, aforoMaximo }) {
-    $('leyenda').textContent = `mesas ocupadas de ${mesas} · máx. ${aforoMaximo} pax`;
+    $('leyenda').textContent = `(mesas ocupadas de ${mesas} · máx. ${aforoMaximo} pax)`;
     $('ocupacion').replaceChildren(...ocupacion.map((o) => {
       const pct = Math.round((o.mesas / mesas) * 100);
       const nivel = o.mesas >= mesas ? ' llena' : pct >= 75 ? ' alta' : '';
@@ -102,7 +102,7 @@
         el('td', {}, r.nombre, el('small', {}, contacto), r.origen === 'restaurante' ? el('small', {}, '📞 añadida por el restaurante') : null),
         el('td', {}, r.comentarios || '—'),
         el('td', {}, el('code', {}, r.codigo)),
-        el('td', {}, el('span', { class: `estado ${r.estado}` }, ESTADOS[r.estado]), el('div', {}, selector)),
+        el('td', {}, el('span', { class: `estado ${r.estado}` }, ESTADOS[r.estado]), el('div', { style: 'margin-top:.35rem' }, selector)),
       );
     }));
   }
