@@ -1,0 +1,32 @@
+# Blueprint de Render para la app de reservas de Cuadrilla Sky (carpeta reservas/).
+# Plan Starter (de pago): necesario para el disco persistente (SQLite) y para enviar emails por SMTP.
+services:
+  - type: web
+    name: cuadrilla-sky-reservas
+    runtime: node
+    plan: starter
+    region: frankfurt
+    rootDir: reservas
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/config
+    disk:
+      name: datos-reservas
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: RUTA_BASE_DATOS
+        value: /var/data/reservas.db
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "465"
+      - key: SMTP_USER
+        value: grupocuadrilla@gmail.com
+      # Render las pedirá al crear el Blueprint (no se guardan en GitHub)
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SMTP_PASS
+        sync: false

@@ -41,12 +41,19 @@ Sin SMTP configurado, los emails se muestran en la consola en lugar de enviarse.
 
 Gmail permite unos 500 envíos al día, de sobra para empezar.
 
-## Publicarla en internet
+## Publicarla en Render
 
-Esta app necesita un servidor Node.js con disco persistente (la base de datos es un archivo SQLite);
-**GitHub Pages no sirve**, porque solo publica páginas estáticas. Opciones sencillas:
-Render, Railway o Fly.io (con un volumen montado para `RUTA_BASE_DATOS`), o cualquier VPS.
-Configura las mismas variables del `.env` en el proveedor y pon `URL_BASE` con la dirección https definitiva.
+El repositorio incluye un Blueprint (`render.yaml` en la raíz) que lo deja todo configurado:
+plan Starter (unos 7 $/mes), región Frankfurt y un disco de 1 GB para la base de datos.
+El plan gratuito no sirve: borra los archivos (las reservas) al reiniciarse y bloquea el envío de emails por SMTP.
+
+1. En <https://dashboard.render.com> → **New → Blueprint** y conecta el repositorio `Legal`.
+2. Elige la rama donde esté la app y confirma el `render.yaml`.
+3. Render pedirá `ADMIN_PASSWORD` (contraseña del panel) y `SMTP_PASS` (contraseña de aplicación de Gmail).
+4. Pulsa **Apply**. En unos minutos tendrás la web en `https://cuadrilla-sky-reservas.onrender.com` (o similar).
+
+Los enlaces de los emails usan automáticamente esa dirección. Si más adelante ponéis un dominio propio,
+añade la variable `URL_BASE` con él.
 
 ## Tests
 

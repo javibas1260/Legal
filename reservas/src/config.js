@@ -32,7 +32,7 @@ const config = {
   },
 
   puerto: num(process.env.PORT, 3000),
-  urlBase: (process.env.URL_BASE || 'http://localhost:3000').replace(/\/$/, ''),
+  urlBase: (process.env.URL_BASE || process.env.RENDER_EXTERNAL_URL || 'http://localhost:3000').replace(/\/$/, ''),
   rutaBaseDatos: process.env.RUTA_BASE_DATOS || 'data/reservas.db',
   adminPassword: process.env.ADMIN_PASSWORD || '',
 
