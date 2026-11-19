@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Cuadrilla Sky · Cancelar reserva</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <h1 data-nombre>Cuadrilla Sky</h1>
+    <p>Gestiona tu reserva</p>
+  </header>
+  <main class="contenedor">
+    <section class="tarjeta exito">
+      <div class="icono" id="icono">🔎</div>
+      <h2 id="titulo">Buscando tu reserva…</h2>
+      <ul class="resumen" id="resumen"></ul>
+      <div id="mensaje" class="aviso oculto" role="status"></div>
+      <div class="acciones" style="justify-content:center">
+        <button type="button" class="peligro oculto" id="cancelar">Sí, cancelar la reserva</button>
+        <a class="boton oculto" id="volver" href="/">Hacer una reserva</a>
+      </div>
+    </section>
+  </main>
+  <script src="js/comun.js"></script>
+  <script src="js/cancelar.js"></script>
+</body>
+</html>
