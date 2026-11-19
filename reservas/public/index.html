@@ -9,11 +9,11 @@
 </head>
 <body>
   <header class="cabecera">
-    <h1 data-nombre>Cuadrilla Sky</h1>
-    <p>Reserva tu mesa en un minuto</p>
+    <h1 class="marca" data-marca aria-label="Cuadrilla Sky"><span class="marca-principal">cuadrilla</span><span class="marca-secundaria">sky</span></h1>
+    <p class="lema">Un lugar para disfrutar con tus amigos, un poco más cerca del cielo</p>
     <div class="datos">
-      <span>📍 <span data-direccion>Paseo de la Castellana, 259, Madrid</span></span>
-      <span>🕗 Martes a domingo, 8:00–24:00</span>
+      <span data-direccion>Paseo de la Castellana, 259, Madrid</span>
+      <span>Martes a domingo · 8:00–24:00</span>
     </div>
   </header>
 
@@ -21,17 +21,15 @@
     <section class="tarjeta" id="paso-reserva">
       <form id="formulario" novalidate>
         <h2>Tu reserva</h2>
-        <div class="fila">
-          <div class="campo">
-            <label for="fecha">Fecha</label>
-            <input type="date" id="fecha" name="fecha" required>
-          </div>
-          <div class="campo">
-            <label for="personas">Personas</label>
-            <select id="personas" name="personas"></select>
-          </div>
+        <div class="campo">
+          <label id="lbl-personas">¿Cuántos sois?</label>
+          <div class="personas" id="personas" role="group" aria-labelledby="lbl-personas"></div>
+          <p class="nota" id="nota-grupos"></p>
         </div>
-        <p class="nota" id="nota-grupos"></p>
+        <div class="campo">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
 
         <h3>Hora</h3>
         <div id="horas" class="horas" role="group" aria-label="Horas disponibles"></div>

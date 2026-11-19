@@ -19,10 +19,17 @@
     return;
   }
 
-  // Personas
+  // Personas: botones redondos 1…máximo
+  let personas = 2;
+  const pintarPersonas = () => $('personas').querySelectorAll('button')
+    .forEach((b) => b.setAttribute('aria-pressed', String(Number(b.value) === personas)));
   for (let i = 1; i <= cfg.maxPersonasPorReserva; i += 1) {
-    $('personas').append(el('option', { value: i, selected: i === 2 }, `${i} ${i === 1 ? 'persona' : 'personas'}`));
+    $('personas').append(el('button', {
+      type: 'button', value: i, 'aria-label': `${i} ${i === 1 ? 'persona' : 'personas'}`,
+      onclick: () => { personas = i; pintarPersonas(); cargarHoras(); },
+    }, String(i)));
   }
+  pintarPersonas();
   const contacto = cfg.restaurante.telefono
     ? `Llámanos al ${cfg.restaurante.telefono} o escríbenos a ${cfg.restaurante.email}.`
     : `Escríbenos a ${cfg.restaurante.email} y te preparamos la mesa.`;
@@ -45,7 +52,7 @@
     if (!fecha.value) { nota.textContent = 'Elige una fecha para ver las horas libres.'; return; }
     nota.textContent = 'Buscando mesas libres…';
     try {
-      const r = await api(`/api/disponibilidad?fecha=${fecha.value}&personas=${$('personas').value}`);
+      const r = await api(`/api/disponibilidad?fecha=${fecha.value}&personas=${personas}`);
       if (r.cerrado) { nota.textContent = `${r.motivo} Elige otro día, por favor.`; return; }
       const libres = r.horas.filter((h) => h.disponible).length;
       for (const h of r.horas) {
@@ -68,7 +75,6 @@
   }
 
   fecha.addEventListener('change', cargarHoras);
-  $('personas').addEventListener('change', cargarHoras);
   cargarHoras();
 
   form.addEventListener('submit', async (ev) => {
@@ -90,7 +96,7 @@
       const r = await api('/api/reservas', {
         method: 'POST',
         body: {
-          fecha: fecha.value, hora: horaElegida, personas: Number($('personas').value),
+          fecha: fecha.value, hora: horaElegida, personas,
           nombre: $('nombre').value, telefono: $('telefono').value, email: $('email').value,
           comentarios: $('comentarios').value, web: $('web').value, aceptaPrivacidad: true,
         },
@@ -117,7 +123,8 @@
   $('otra').addEventListener('click', () => {
     form.reset();
     fecha.value = primera;
-    $('personas').value = '2';
+    personas = 2;
+    pintarPersonas();
     $('paso-exito').classList.add('oculto');
     $('paso-reserva').classList.remove('oculto');
     cargarHoras();

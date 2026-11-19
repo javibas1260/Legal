@@ -9,8 +9,8 @@
 </head>
 <body>
   <header class="cabecera">
-    <h1 data-nombre>Cuadrilla Sky</h1>
-    <p>Gestiona tu reserva</p>
+    <h1 class="marca" data-marca aria-label="Cuadrilla Sky"><span class="marca-principal">cuadrilla</span><span class="marca-secundaria">sky</span></h1>
+    <p class="lema">Gestiona tu reserva</p>
   </header>
   <main class="contenedor">
     <section class="tarjeta exito">
@@ -18,7 +18,7 @@
       <h2 id="titulo">Buscando tu reserva…</h2>
       <ul class="resumen" id="resumen"></ul>
       <div id="mensaje" class="aviso oculto" role="status"></div>
-      <div class="acciones" style="justify-content:center">
+      <div class="acciones centro">
         <button type="button" class="peligro oculto" id="cancelar">Sí, cancelar la reserva</button>
         <a class="boton oculto" id="volver" href="/">Hacer una reserva</a>
       </div>

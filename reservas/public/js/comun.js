@@ -45,6 +45,14 @@ window.Comun = (() => {
   async function cargarRestaurante() {
     const cfg = await api('/api/config');
     document.querySelectorAll('[data-nombre]').forEach((n) => { n.textContent = cfg.restaurante.nombre; });
+    // Marca: "Cuadrilla Sky" → "cuadrilla" grande + "SKY" espaciado debajo
+    const palabras = cfg.restaurante.nombre.trim().split(/\s+/);
+    const secundaria = palabras.length > 1 ? palabras.pop() : '';
+    document.querySelectorAll('[data-marca]').forEach((n) => {
+      n.setAttribute('aria-label', cfg.restaurante.nombre);
+      n.replaceChildren(el('span', { class: 'marca-principal' }, palabras.join(' ')),
+        secundaria ? el('span', { class: 'marca-secundaria' }, secundaria) : null);
+    });
     document.querySelectorAll('[data-direccion]').forEach((n) => { n.textContent = cfg.restaurante.direccion; });
     document.title = document.title.replace('Cuadrilla Sky', cfg.restaurante.nombre);
     return cfg;

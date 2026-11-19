@@ -68,10 +68,11 @@
   }
 
   function pintarOcupacion({ ocupacion, mesas, aforoMaximo }) {
-    $('leyenda').textContent = `(mesas ocupadas de ${mesas} · máx. ${aforoMaximo} pax)`;
+    $('leyenda').textContent = `mesas ocupadas de ${mesas} · máx. ${aforoMaximo} pax`;
     $('ocupacion').replaceChildren(...ocupacion.map((o) => {
       const pct = Math.round((o.mesas / mesas) * 100);
-      return el('div', { class: `franja${o.mesas >= mesas ? ' llena' : ''}`, title: `${o.hora}: ${o.mesas} mesas, ${o.personas} personas` },
+      const nivel = o.mesas >= mesas ? ' llena' : pct >= 75 ? ' alta' : '';
+      return el('div', { class: `franja${nivel}`, title: `${o.hora}: ${o.mesas} mesas, ${o.personas} personas` },
         el('b', {}, o.hora), `${o.mesas} · ${o.personas}p`,
         el('div', { class: 'barrita' }, el('i', { style: `width:${pct}%` })));
     }));
@@ -101,7 +102,7 @@
         el('td', {}, r.nombre, el('small', {}, contacto), r.origen === 'restaurante' ? el('small', {}, '📞 añadida por el restaurante') : null),
         el('td', {}, r.comentarios || '—'),
         el('td', {}, el('code', {}, r.codigo)),
-        el('td', {}, el('span', { class: `estado ${r.estado}` }, ESTADOS[r.estado]), el('div', { style: 'margin-top:.35rem' }, selector)),
+        el('td', {}, el('span', { class: `estado ${r.estado}` }, ESTADOS[r.estado]), el('div', {}, selector)),
       );
     }));
   }

@@ -80,3 +80,11 @@ test/                  ← pruebas automáticas
 
 - Completar la [política de privacidad](public/privacidad.html) con la razón social y el NIF del titular.
 - Añadir el teléfono del restaurante (`RESTAURANTE_TELEFONO`) si queréis que aparezca.
+
+## Diseño
+
+Sigue la identidad de [cuadrilla.es](https://cuadrilla.es): tipografía **Questrial** (incluida en
+`public/fonts`, licencia SIL OFL, sin depender de Google Fonts), verdes salvia (`#5e7872`, `#80a29a`),
+verde bosque (`#14261c`), botones píldora y etiquetas en mayúsculas espaciadas. El toque *Sky* es un
+cielo de anochecer en azul con el skyline de la Castellana (`public/img/skyline.svg`) y la planta
+de arriba iluminada. Los colores están como variables al principio de `public/styles.css`.
